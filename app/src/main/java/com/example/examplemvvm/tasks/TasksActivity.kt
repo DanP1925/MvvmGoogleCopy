@@ -1,9 +1,10 @@
-package com.example.examplemvvm
+package com.example.examplemvvm.tasks
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.examplemvvm.R
 
-class MainActivity : AppCompatActivity() {
+class TasksActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
