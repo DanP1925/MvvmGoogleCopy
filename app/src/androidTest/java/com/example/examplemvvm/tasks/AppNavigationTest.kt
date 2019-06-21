@@ -6,6 +6,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.DrawerActions.open
 import androidx.test.espresso.contrib.DrawerMatchers.isClosed
 import androidx.test.espresso.contrib.NavigationViewActions.navigateTo
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
@@ -31,8 +32,8 @@ class AppNavigationTest {
         onView(withId(R.id.nav_view))
                 .perform(navigateTo(R.id.statistics_navigation_menu_item))
 
-/*        onView(withId(R.id.statistics))
-                .check(matches(isDisplayed()))*/
+        onView(withId(R.id.statistics))
+                .check(matches(isDisplayed()))
     }
 
 }
