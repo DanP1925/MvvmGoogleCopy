@@ -1,5 +1,7 @@
 package com.example.examplemvvm.util
 
+import androidx.annotation.IdRes
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -15,4 +17,11 @@ private inline fun FragmentManager.transact(action: FragmentTransaction.() -> Un
     beginTransaction().apply{
         action()
     }.commit()
+}
+
+fun AppCompatActivity.setupActionBar(@IdRes toolbarId: Int, action: ActionBar.() -> Unit){
+    setSupportActionBar(findViewById(toolbarId))
+    supportActionBar?.run{
+        action()
+    }
 }

@@ -36,4 +36,18 @@ class AppNavigationTest {
                 .check(matches(isDisplayed()))
     }
 
+    @Test
+    fun clickOnListNavigationItem_ShowsListScreen(){
+        onView(withId(R.id.drawer_layout))
+            .check(matches(isClosed(Gravity.START)))
+            .perform(open())
+
+        onView(withId(R.id.nav_view))
+            .perform(navigateTo(R.id.statistics_navigation_menu_item))
+
+        onView(withId(R.id.drawer_layout))
+            .check(matches(isClosed(Gravity.START)))
+            .perform(open())
+    }
+
 }

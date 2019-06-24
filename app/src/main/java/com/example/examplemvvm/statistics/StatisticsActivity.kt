@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.examplemvvm.R
 import com.example.examplemvvm.util.replaceFragmentInActivity
+import com.example.examplemvvm.util.setupActionBar
 
 class StatisticsActivity : AppCompatActivity() {
 
@@ -13,6 +14,11 @@ class StatisticsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_statistics)
+
+        setupActionBar(R.id.toolbar){
+            setTitle(R.string.statistics_title)
+        }
+
         findOrCreateViewFragment()
     }
 
