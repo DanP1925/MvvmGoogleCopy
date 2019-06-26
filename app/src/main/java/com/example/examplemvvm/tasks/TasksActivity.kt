@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.examplemvvm.R
 import com.example.examplemvvm.statistics.StatisticsActivity
+import com.example.examplemvvm.util.replaceFragmentInActivity
 import com.example.examplemvvm.util.setupActionBar
 import com.google.android.material.navigation.NavigationView
 
@@ -26,11 +27,19 @@ class TasksActivity : AppCompatActivity() {
 
         setupNavigationDrawer()
 
+        setupViewFragment()
     }
 
     private fun setupNavigationDrawer() {
-        drawerLayout = (findViewById(R.id.drawer_layout))
+        drawerLayout = (findViewById<DrawerLayout>(R.id.drawer_layout)).apply {
+            setStatusBarBackground(R.color.colorPrimaryDark)
+        }
         setupDrawerContent(findViewById(R.id.nav_view))
+    }
+
+    private fun setupViewFragment(){
+        supportFragmentManager.findFragmentById(R.id.contentFrame)
+                ?: replaceFragmentInActivity(TasksFragment.newInstance(),R.id.contentFrame)
     }
 
     override fun onOptionsItemSelected(item: MenuItem) =
