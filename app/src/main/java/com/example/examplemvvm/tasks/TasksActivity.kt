@@ -37,21 +37,6 @@ class TasksActivity : AppCompatActivity() {
         setupDrawerContent(findViewById(R.id.nav_view))
     }
 
-    private fun setupViewFragment(){
-        supportFragmentManager.findFragmentById(R.id.contentFrame)
-                ?: replaceFragmentInActivity(TasksFragment.newInstance(),R.id.contentFrame)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem) =
-        when (item.itemId) {
-            android.R.id.home -> {
-                drawerLayout.openDrawer(GravityCompat.START)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-
-
     private fun setupDrawerContent(navigationView: NavigationView) {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -70,5 +55,20 @@ class TasksActivity : AppCompatActivity() {
         }
 
     }
+
+    private fun setupViewFragment(){
+        supportFragmentManager.findFragmentById(R.id.contentFrame)
+                ?: replaceFragmentInActivity(TasksFragment.newInstance(),R.id.contentFrame)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) =
+        when (item.itemId) {
+            android.R.id.home -> {
+                drawerLayout.openDrawer(GravityCompat.START)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+
 
 }
