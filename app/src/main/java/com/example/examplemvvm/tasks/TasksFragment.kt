@@ -24,8 +24,8 @@ class TasksFragment : Fragment() {
 
     private fun setupFab(){
         activity?.findViewById<FloatingActionButton>(R.id.fab_add_task)?.let {
+            it.setImageResource(R.drawable.ic_add)
             it.setOnClickListener {
-
             }
         }
     }

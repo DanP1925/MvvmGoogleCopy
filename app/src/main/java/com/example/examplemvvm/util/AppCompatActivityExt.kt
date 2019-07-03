@@ -6,12 +6,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 
 fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment, frameId: Int){
     supportFragmentManager.transact{
         replace(frameId, fragment)
     }
 }
+
+fun <T : ViewModel> AppCompatActivity.obtainViewModel(viewModelClass: Class<T>) =
+    ViewModelProviders.of(this,ViewModelFactory.getInstance(application)).get(viewModelClass)
 
 private inline fun FragmentManager.transact(action: FragmentTransaction.() -> Unit){
     beginTransaction().apply{

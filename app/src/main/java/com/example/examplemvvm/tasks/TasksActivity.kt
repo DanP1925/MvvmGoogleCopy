@@ -16,6 +16,8 @@ class TasksActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
 
+    private lateinit var viewModel: TasksViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tasks)
@@ -28,6 +30,8 @@ class TasksActivity : AppCompatActivity() {
         setupNavigationDrawer()
 
         setupViewFragment()
+
+        viewModel = obtainViewModel()
     }
 
     private fun setupNavigationDrawer() {
@@ -70,5 +74,6 @@ class TasksActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
 
+/*    fun obtainViewModel() : TasksViewModel = obtainViewModel()*/
 
 }
