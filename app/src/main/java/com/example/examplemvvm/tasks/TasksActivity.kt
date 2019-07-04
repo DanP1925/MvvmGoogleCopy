@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.examplemvvm.R
 import com.example.examplemvvm.statistics.StatisticsActivity
+import com.example.examplemvvm.util.obtainViewModel
 import com.example.examplemvvm.util.replaceFragmentInActivity
 import com.example.examplemvvm.util.setupActionBar
 import com.google.android.material.navigation.NavigationView
@@ -31,7 +32,9 @@ class TasksActivity : AppCompatActivity() {
 
         setupViewFragment()
 
-        viewModel = obtainViewModel()
+        viewModel = obtainViewModel().apply {
+
+        }
     }
 
     private fun setupNavigationDrawer() {
@@ -74,6 +77,6 @@ class TasksActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
 
-/*    fun obtainViewModel() : TasksViewModel = obtainViewModel()*/
+    fun obtainViewModel() : TasksViewModel = obtainViewModel(TasksViewModel::class.java)
 
 }
