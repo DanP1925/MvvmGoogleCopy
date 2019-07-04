@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
+import com.example.examplemvvm.Event
 import com.example.examplemvvm.R
 import com.example.examplemvvm.statistics.StatisticsActivity
 import com.example.examplemvvm.util.obtainViewModel
@@ -33,7 +35,11 @@ class TasksActivity : AppCompatActivity() {
         setupViewFragment()
 
         viewModel = obtainViewModel().apply {
+            newTaskEvent.observe(this@TasksActivity, Observer<Event<Unit>>{event ->
+                event.getContentIfNotHandled()?.let{
 
+                }
+            })
         }
     }
 
