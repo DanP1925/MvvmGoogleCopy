@@ -9,13 +9,14 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import com.example.examplemvvm.Event
 import com.example.examplemvvm.R
+import com.example.examplemvvm.addedittask.AddEditTaskActivity
 import com.example.examplemvvm.statistics.StatisticsActivity
 import com.example.examplemvvm.util.obtainViewModel
 import com.example.examplemvvm.util.replaceFragmentInActivity
 import com.example.examplemvvm.util.setupActionBar
 import com.google.android.material.navigation.NavigationView
 
-class TasksActivity : AppCompatActivity() {
+class TasksActivity : AppCompatActivity(), TasksNavigator {
 
     private lateinit var drawerLayout: DrawerLayout
 
@@ -35,9 +36,9 @@ class TasksActivity : AppCompatActivity() {
         setupViewFragment()
 
         viewModel = obtainViewModel().apply {
-            newTaskEvent.observe(this@TasksActivity, Observer<Event<Unit>>{event ->
-                event.getContentIfNotHandled()?.let{
-
+            newTaskEvent.observe(this@TasksActivity, Observer<Event<Unit>> { event ->
+                event.getContentIfNotHandled()?.let {
+                    this@TasksActivity.addNewTask()
                 }
             })
         }
@@ -69,20 +70,27 @@ class TasksActivity : AppCompatActivity() {
 
     }
 
-    private fun setupViewFragment(){
+    private fun setupViewFragment() {
         supportFragmentManager.findFragmentById(R.id.contentFrame)
-                ?: replaceFragmentInActivity(TasksFragment.newInstance(),R.id.contentFrame)
+                ?: replaceFragmentInActivity(TasksFragment.newInstance(), R.id.contentFrame)
     }
 
     override fun onOptionsItemSelected(item: MenuItem) =
-        when (item.itemId) {
-            android.R.id.home -> {
-                drawerLayout.openDrawer(GravityCompat.START)
-                true
+            when (item.itemId) {
+                android.R.id.home -> {
+                    drawerLayout.openDrawer(GravityCompat.START)
+                    true
+                }
+                else -> super.onOptionsItemSelected(item)
             }
-            else -> super.onOptionsItemSelected(item)
-        }
 
-    fun obtainViewModel() : TasksViewModel = obtainViewModel(TasksViewModel::class.java)
+
+
+    fun obtainViewModel(): TasksViewModel = obtainViewModel(TasksViewModel::class.java)
+
+    override fun addNewTask() {
+        val intent = Intent(this, AddEditTaskActivity::class.java)
+        startActivityForResult(intent, AddEditTaskActivity.REQUEST_CODE)
+    }
 
 }
